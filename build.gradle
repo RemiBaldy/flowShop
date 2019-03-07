@@ -1,0 +1,49 @@
+plugins {
+    id 'java'
+}
+
+group 'flowShopProblem'
+version '1.0-SNAPSHOT'
+
+sourceCompatibility = 1.8
+
+repositories {
+    mavenCentral()
+}
+
+
+sourceSets {
+    main {
+        java {
+            srcDirs= ["src/main/java"]
+        }
+        resources {
+            srcDirs= ["src/main/resources"]
+        }
+    }
+}
+
+
+dependencies {
+    implementation 'com.google.guava:guava:27.0.1-jre'
+    implementation 'com.google.code.gson:gson:2.8.5'
+    implementation 'org.openjfx:javafx-base:11.0.1:linux'
+    implementation 'org.openjfx:javafx-controls:11.0.1:linux'
+    implementation 'org.openjfx:javafx-fxml:11.0.1:linux'
+    implementation 'org.openjfx:javafx-graphics:11.0.1:linux'
+    implementation 'org.jgrapht:jgrapht-core:1.3.0'
+    implementation files("${gradle.or_tools}/lib/com.google.ortools.jar")
+    implementation files("${gradle.or_tools}/lib/protobuf.jar")
+}
+
+task run(type: JavaExec) {
+    classpath = sourceSets.main.runtimeClasspath
+    jvmArgs = [ "--module-path="+classpath.asPath,
+                "--add-modules=javafx.fxml,javafx.controls",
+                "-Djava.library.path=${gradle.or_tools}/lib",
+                "--illegal-access=deny",
+                "-Xms2G" ]
+    main = 'flowShop/Example'
+}
+
+defaultTasks = ['run']

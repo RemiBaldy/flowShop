@@ -1,0 +1,3 @@
+gradle.ext.or_tools = "${System.env.HOME}/OR_Tools"
+rootProject.name = 'flowShop'
+
