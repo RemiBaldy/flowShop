@@ -9,7 +9,6 @@ public class Instance {
     int[][] processingTime;
 
     public Instance(int jobCount, int machineCount) {
-        System.out.println(machineCount);
         this.machineCount = machineCount;
         this.jobCount = jobCount;
         processingTime = new int[jobCount][machineCount];

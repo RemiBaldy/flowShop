@@ -43,7 +43,7 @@ task run(type: JavaExec) {
                 "-Djava.library.path=${gradle.or_tools}/lib",
                 "--illegal-access=deny",
                 "-Xms2G" ]
-    main = 'flowShop/Example'
+    main = 'flowShop/Solver'
 }
 
 defaultTasks = ['run']
